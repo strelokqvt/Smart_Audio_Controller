@@ -180,21 +180,26 @@ namespace SmartAC
             }
         }
 
-        private void get_site(string text)
+        private string get_site(string text)
         {
-            string open_wild = "вилдберрис";
-            string open_wild_2 = "Вилдберис";
-            string open_vk = "ВК";
-            string open_vk_2 = "ВКонтакте";
-            if (text.Contains(open_wild) || text.Contains(open_wild_2))
+            // load xml for web-sites
+            XDocument xDocument2 = new XDocument();
+            xDocument2 = XDocument.Load("CfgWeb.xml");
+            string WebAdress = "http://www.vk.com";
+            string block_num = xDocument2.Element("paths").Element("blocks_count").Value;
+            int g = int.Parse(block_num);
+            for (int i = 1; i < g + 1; i++)
             {
-             System.Diagnostics.Process.Start("https://www.wildberries.ru");
+                //string xmlnum = i.ToString();
+                if (text.Contains(xDocument2.Element("paths").Element("block_" + i + "_st").Element("keyword").Value))
+                {
+                    WebAdress = xDocument2.Element("paths").Element("block_" + i + "_st").Element("Adress").Value;
+                    return WebAdress;
+                    break;
+                }
             }
-            if (text.Contains(open_vk) || text.Contains(open_vk_2))
-            {
-                System.Diagnostics.Process.Start("http://www.vk.com");
-            }								
-        }			
+            return WebAdress;
+        }		
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -212,9 +217,8 @@ namespace SmartAC
 
             StreamReader reader = new StreamReader(response.GetResponseStream());
 
-            //label1.Text = reader.ReadToEnd();
             string text = reader.ReadToEnd();
-			get_site( text ); 
+            System.Diagnostics.Process.Start(get_site( text ));
             // Clean up the streams.
             reader.Close();
             response.Close();

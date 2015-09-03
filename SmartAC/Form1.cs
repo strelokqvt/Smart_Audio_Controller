@@ -29,7 +29,7 @@ namespace SmartAC
     {
         WaveIn waveIn;
         WaveFileWriter writer;
-        string outputFilename = "demo.wav";
+        string outputFilename = "command.wav";
         bool ON = false;
         public Form1()
         {
@@ -112,9 +112,18 @@ namespace SmartAC
         private void run_proc(string text)	
         {	
             Process proc = new Process();
-            proc.StartInfo.FileName = ReadXML(text); //передаем записанный текст
+			string proc_path = ReadXML(text); //передаем записанный текст
+			if (proc_path != null)
+			{
+            proc.StartInfo.FileName = proc_path; 
             proc.StartInfo.Arguments = "";
-            proc.Start();								
+            proc.Start();							
+			}
+			else
+			{
+		     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK, 
+			 MessageBoxIcon.Information);
+			}			 
 		}			
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,7 +141,6 @@ namespace SmartAC
             // Загружаем файл
             XDocument xDocument1 = new XDocument();
             xDocument1 = XDocument.Load("CfgFile.xml");
-            string PathName = "notepad.exe";
             string block_count = xDocument1.Element("paths").Element("blocks_count").Value;
             int h = int.Parse(block_count);
             for (int i = 1; i < h+1; i++)
@@ -140,12 +148,12 @@ namespace SmartAC
                 string xmlnum = i.ToString();
                 if (text.Contains(xDocument1.Element("paths").Element("block_" + i + "_st").Element("keyword").Value))
                     {
-                        PathName = xDocument1.Element("paths").Element("block_" + i + "_st").Element("Path").Value;
+                        string PathName = xDocument1.Element("paths").Element("block_" + i + "_st").Element("Path").Value;
                         return PathName;
                         break; //yeah, release it!
                     }
             }
-            return PathName;
+            return null;
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -185,7 +193,6 @@ namespace SmartAC
             // load xml for web-sites
             XDocument xDocument2 = new XDocument();
             xDocument2 = XDocument.Load("CfgWeb.xml");
-            string WebAdress = "http://www.vk.com";
             string block_num = xDocument2.Element("paths").Element("blocks_count").Value;
             int g = int.Parse(block_num);
             for (int i = 1; i < g + 1; i++)
@@ -193,12 +200,12 @@ namespace SmartAC
                 //string xmlnum = i.ToString();
                 if (text.Contains(xDocument2.Element("paths").Element("block_" + i + "_st").Element("keyword").Value))
                 {
-                    WebAdress = xDocument2.Element("paths").Element("block_" + i + "_st").Element("Adress").Value;
+                    string WebAdress = xDocument2.Element("paths").Element("block_" + i + "_st").Element("Adress").Value;
                     return WebAdress;
                     break;
                 }
             }
-            return WebAdress;
+            return null;
         }		
 
         private void button3_Click(object sender, EventArgs e)
@@ -218,7 +225,16 @@ namespace SmartAC
             StreamReader reader = new StreamReader(response.GetResponseStream());
 
             string text = reader.ReadToEnd();
-            System.Diagnostics.Process.Start(get_site( text ));
+			string web_adress_name = get_site(text);
+			if (web_adress_name != null)
+			{
+            System.Diagnostics.Process.Start(web_adress_name);
+			}
+			else
+			{
+		     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK, 
+			 MessageBoxIcon.Information);				
+			}	
             // Clean up the streams.
             reader.Close();
             response.Close();

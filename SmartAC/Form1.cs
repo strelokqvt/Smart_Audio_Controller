@@ -256,6 +256,19 @@ namespace SmartAC
         {
 
         }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            //image for tabcontrol pages
+            string s = tabControl1.TabPages[e.Index].Text;
+            if (s.Length > 20)
+                s = s.Substring(0, 17) + "...";
+
+            Image newImage = Image.FromFile("tabpng.png");
+            Rectangle destRect = new Rectangle(e.Bounds.Left-10, e.Bounds.Top-5, e.Bounds.Width+15, 40);
+            e.Graphics.DrawImage(newImage, destRect);
+            e.Graphics.DrawString(s, e.Font, Brushes.Black, new RectangleF(e.Bounds.Left + 35, e.Bounds.Top + 6, e.Bounds.Width, e.Bounds.Height));
+        }
         }
     
 }

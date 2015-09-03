@@ -291,6 +291,14 @@ namespace SmartAC
             e.Graphics.DrawImage(newImage, destRect);
             e.Graphics.DrawString(s, e.Font, Brushes.Black, new RectangleF(e.Bounds.Left + 35, e.Bounds.Top + 6, e.Bounds.Width, e.Bounds.Height));
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "executable file (*.exe)|*.exe;";
+            if (openFile.ShowDialog() == DialogResult.OK)
+                textBox2.Text = openFile.FileName; //next for create command in XML
+        }
         }
     
 }

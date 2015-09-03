@@ -38,6 +38,7 @@ namespace SmartAC
         //
         private void button1_Click(object sender, EventArgs e)
         {
+            playStartRecord();
             if (ON == false)
             {
                 waveIn = new WaveIn();
@@ -55,6 +56,7 @@ namespace SmartAC
             else
             {
                 waveIn.StopRecording();
+                playStopRecord();
                 label2.Text = "";
                 ON = false;
                 button1.Text = "Запись";
@@ -156,6 +158,26 @@ namespace SmartAC
             return null;
         }
 
+        private void playStartRecord()
+        {
+            IWavePlayer waveOutDevice;
+            AudioFileReader audioFileReader;
+            waveOutDevice = new WaveOut();
+            audioFileReader = new AudioFileReader("start_rec.mp3");
+            waveOutDevice.Init(audioFileReader);
+            waveOutDevice.Play();
+        }
+
+        private void playStopRecord()
+        {
+            IWavePlayer waveOutDevice;
+            AudioFileReader audioFileReader;
+            waveOutDevice = new WaveOut();
+            audioFileReader = new AudioFileReader("stop_rec.mp3");
+            waveOutDevice.Init(audioFileReader);
+            waveOutDevice.Play();
+        }
+
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -242,11 +264,11 @@ namespace SmartAC
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F1 && this.tabControl1.SelectedIndex == 0)
             {
              button1_Click(null, null);
             }
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex == 0)
             {
                 button2_Click(null, null);
             }

@@ -178,33 +178,6 @@ namespace SmartAC
             waveOutDevice.Play();
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyData)
-            {
-                case Keys.F1:
-                    textBox1.Text = "F1";
-                    e.Handled = true;
-                    break;
-                case Keys.F2:
-                    textBox1.Text = "F2";
-                    e.Handled = true;
-                    break;
-                case Keys.F3:
-                    textBox1.Text = "F3";
-                    e.Handled = true;
-                    break;
-                case Keys.F4:
-                    textBox1.Text = "F4";
-                    e.Handled = true;
-                    break;
-                case Keys.F5:
-                    textBox1.Text = "F5";
-                    e.Handled = true;
-                    break;
-            }
-        }
-
         private string get_site(string text)
         {
             // load xml for web-sites
@@ -256,18 +229,6 @@ namespace SmartAC
             reader.Close();
             response.Close();
 		}
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F1 && this.tabControl1.SelectedIndex == 0)
-            {
-             button1_Click(null, null);
-            }
-            if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex == 0)
-            {
-                button2_Click(null, null);
-            }
-        }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {

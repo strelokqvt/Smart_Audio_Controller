@@ -98,7 +98,7 @@ namespace SmartAC
 
             //label1.Text = reader.ReadToEnd();
             string text = reader.ReadToEnd();
-			run_proc( text ); 
+            run_proc(text.ToLower()); 
             // Clean up the streams.
             reader.Close();
             response.Close();
@@ -148,7 +148,7 @@ namespace SmartAC
             for (int i = 1; i < h+1; i++)
             {
                 string xmlnum = i.ToString();
-                if (text.Contains(xDocument1.Element("paths").Element("block_" + i + "_st").Element("keyword").Value))
+                if (text.Contains(xDocument1.Element("paths").Element("block_" + i + "_st").Element("keyword").Value.ToLower()))
                     {
                         string PathName = xDocument1.Element("paths").Element("block_" + i + "_st").Element("Path").Value;
                         return PathName;
@@ -176,11 +176,6 @@ namespace SmartAC
             audioFileReader = new AudioFileReader("stop_rec.mp3");
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -298,6 +293,11 @@ namespace SmartAC
             openFile.Filter = "executable file (*.exe)|*.exe;";
             if (openFile.ShowDialog() == DialogResult.OK)
                 textBox2.Text = openFile.FileName; //next for create command in XML
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string keywordValue = textBox3.Text;
         }
         }
     

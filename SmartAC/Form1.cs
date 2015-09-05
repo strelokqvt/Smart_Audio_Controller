@@ -138,26 +138,6 @@ namespace SmartAC
             }
         }
 
-        private string ReadXML(string text)
-        {
-            // Загружаем файл
-            XDocument xDocument1 = new XDocument();
-            xDocument1 = XDocument.Load("CfgFile.xml");
-            string block_count = xDocument1.Element("paths").Element("blocks_count").Value;
-            int h = int.Parse(block_count);
-            for (int i = 1; i < h+1; i++)
-            {
-                string xmlnum = i.ToString();
-                if (text.Contains(xDocument1.Element("paths").Element("block_" + i + "_st").Element("keyword").Value.ToLower()))
-                    {
-                        string PathName = xDocument1.Element("paths").Element("block_" + i + "_st").Element("Path").Value;
-                        return PathName;
-                        break; //yeah, release it!
-                    }
-            }
-            return null;
-        }
-
         private void playStartRecord()
         {
             IWavePlayer waveOutDevice;
@@ -176,26 +156,6 @@ namespace SmartAC
             audioFileReader = new AudioFileReader("stop_rec.mp3");
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
-        }
-
-        private string get_site(string text)
-        {
-            // load xml for web-sites
-            XDocument xDocument2 = new XDocument();
-            xDocument2 = XDocument.Load("CfgWeb.xml");
-            string block_num = xDocument2.Element("paths").Element("blocks_count").Value;
-            int g = int.Parse(block_num);
-            for (int i = 1; i < g + 1; i++)
-            {
-                //string xmlnum = i.ToString();
-                if (text.Contains(xDocument2.Element("paths").Element("block_" + i + "_st").Element("keyword").Value))
-                {
-                    string WebAdress = xDocument2.Element("paths").Element("block_" + i + "_st").Element("Adress").Value;
-                    return WebAdress;
-                    break;
-                }
-            }
-            return null;
         }		
 
         private void button3_Click(object sender, EventArgs e)
@@ -261,7 +221,10 @@ namespace SmartAC
             string keywordValue = textBox3.Text;
             XmlDocument document = new XmlDocument();
             document.Load("CfgFile.xml");
-            XmlNode block_num = document.CreateElement("block_11_st");
+            int oldLoadCount = loadXmlBlockCount();
+            int newLoadCount = oldLoadCount+1;
+
+            XmlNode block_num = document.CreateElement("block_" + newLoadCount + "_st");
             document.DocumentElement.AppendChild(block_num);
             XmlNode keyword_element = document.CreateElement("keyword");
             keyword_element.InnerText = keywordValue;
@@ -269,7 +232,9 @@ namespace SmartAC
             XmlNode path_element = document.CreateElement("Path");
             path_element.InnerText = textBox2.Text;
             block_num.AppendChild(path_element);
+
             document.Save("CfgFile.xml");
+            changeBlocksCount(newLoadCount);
         }
         }
     

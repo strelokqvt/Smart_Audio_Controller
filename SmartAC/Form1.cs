@@ -259,6 +259,17 @@ namespace SmartAC
         private void button5_Click(object sender, EventArgs e)
         {
             string keywordValue = textBox3.Text;
+            XmlDocument document = new XmlDocument();
+            document.Load("CfgFile.xml");
+            XmlNode block_num = document.CreateElement("block_11_st");
+            document.DocumentElement.AppendChild(block_num);
+            XmlNode keyword_element = document.CreateElement("keyword");
+            keyword_element.InnerText = keywordValue;
+            block_num.AppendChild(keyword_element);
+            XmlNode path_element = document.CreateElement("Path");
+            path_element.InnerText = textBox2.Text;
+            block_num.AppendChild(path_element);
+            document.Save("CfgFile.xml");
         }
         }
     

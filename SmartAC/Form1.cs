@@ -38,6 +38,8 @@ namespace SmartAC
         //
         private void button1_Click(object sender, EventArgs e)
         {
+            Image StopIcon = Image.FromFile("stop.png");
+            Image StartIcon = Image.FromFile("start.png");
             playStartRecord();
             if (ON == false)
             {
@@ -47,8 +49,7 @@ namespace SmartAC
                 waveIn.RecordingStopped += new EventHandler<NAudio.Wave.StoppedEventArgs>(waveIn_RecordingStopped);
                 waveIn.WaveFormat = new WaveFormat(16000, 1);
                 writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
-                label2.Text = "Идет запись...";
-                button1.Text = "Стоп";
+                pictureBox1.Image = StopIcon;
                 waveIn.StartRecording();
                 ON = true;
                 
@@ -57,10 +58,8 @@ namespace SmartAC
             {
                 waveIn.StopRecording();
                 playStopRecord();
-                label2.Text = "";
                 ON = false;
-                button1.Text = "Запись";
-                //button2_Click(this, EventArgs.Empty);
+                pictureBox1.Image = StartIcon;
             }
         }
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)
@@ -80,7 +79,7 @@ namespace SmartAC
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (button1.Text == "Запись")
+            if (ON == false)
             {			
             WebRequest request = WebRequest.Create("https://www.google.com/speech-api/v2/recognize?output=json&lang=ru-RU&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
             //

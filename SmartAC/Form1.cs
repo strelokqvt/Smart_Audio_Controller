@@ -235,6 +235,67 @@ namespace SmartAC
             document.Save("CfgFile.xml");
             changeBlocksCount(newLoadCount);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //Image StopIcon = Image.FromFile("stop.png");
+            //Image StartIcon = Image.FromFile("start.png");
+            playStartRecord();
+            if (ON == false)
+            {
+                waveIn = new WaveIn();
+                waveIn.DeviceNumber = 0;
+                waveIn.DataAvailable += waveIn_DataAvailable;
+                waveIn.RecordingStopped += new EventHandler<NAudio.Wave.StoppedEventArgs>(waveIn_RecordingStopped);
+                waveIn.WaveFormat = new WaveFormat(16000, 1);
+                writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
+                //pictureBox1.Image = StopIcon;
+                waveIn.StartRecording();
+                ON = true;
+
+            }
+            else
+            {
+                waveIn.StopRecording();
+                playStopRecord();
+                ON = false;
+                //pictureBox1.Image = StartIcon;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (ON == false)
+            {
+                WebRequest request = WebRequest.Create("https://www.google.com/speech-api/v2/recognize?output=json&lang=ru-RU&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
+                //
+                request.Method = "POST";
+                byte[] byteArray = File.ReadAllBytes(outputFilename);
+                request.ContentType = "audio/l16; rate=16000"; //"16000";
+                request.ContentLength = byteArray.Length;
+                request.GetRequestStream().Write(byteArray, 0, byteArray.Length);
+
+
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+
+                string text = reader.ReadToEnd();
+                text = text.Substring(text.IndexOf("\"transcript\":\"") + 14); //убираем все, до ключевого слова
+                string second_word = text.Remove(text.IndexOf('"'), text.Length - text.IndexOf('"')); //убираем все, после ключевого слова
+                label11.Text = "Ваш запрос:" + " " + second_word;
+                System.Diagnostics.Process.Start("https://ru.wikipedia.org/wiki/" + second_word);
+                reader.Close();
+                response.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Запись не завершена", "Внимание!", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+        }
         }
     
 }

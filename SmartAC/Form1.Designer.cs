@@ -55,6 +55,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -64,6 +70,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -338,6 +345,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -349,6 +357,75 @@
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 5;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackgroundImage = global::SmartAC.Properties.Resources._66359_1024_768;
+            this.tabPage4.Controls.Add(this.label11);
+            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.button6);
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(774, 694);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Википедия";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label11.Location = new System.Drawing.Point(32, 575);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(179, 32);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Ваш запрос:";
+            // 
+            // button7
+            // 
+            this.button7.Image = global::SmartAC.Properties.Resources.buttonpng2;
+            this.button7.Location = new System.Drawing.Point(186, 481);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(131, 47);
+            this.button7.TabIndex = 9;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(32, 483);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 32);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Найти ";
+            // 
+            // button6
+            // 
+            this.button6.Image = global::SmartAC.Properties.Resources.buttonpng2;
+            this.button6.Location = new System.Drawing.Point(186, 387);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(131, 47);
+            this.button6.TabIndex = 7;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label9.Location = new System.Drawing.Point(32, 389);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 32);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Запись";
             // 
             // openFileDialog1
             // 
@@ -388,6 +465,8 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -422,6 +501,12 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }
 

@@ -29,7 +29,7 @@ namespace SmartAC
     {
         WaveIn waveIn;
         WaveFileWriter writer;
-        string outputFilename = "command.wav";
+        string outputFilename = (Application.StartupPath + "\\command.wav");
         bool ON = false;
         public Form1()
         {
@@ -38,8 +38,8 @@ namespace SmartAC
         //
         private void button1_Click(object sender, EventArgs e)
         {
-            Image StopIcon = Image.FromFile("stop.png");
-            Image StartIcon = Image.FromFile("start.png");
+            Image StopIcon = Image.FromFile(Application.StartupPath + "\\stop.png");
+            Image StartIcon = Image.FromFile(Application.StartupPath + "\\start.png");	
             playStartRecord();
             if (ON == false)
             {
@@ -142,7 +142,7 @@ namespace SmartAC
             IWavePlayer waveOutDevice;
             AudioFileReader audioFileReader;
             waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader("start_rec.mp3");
+            audioFileReader = new AudioFileReader(Application.StartupPath + "\\start_rec.mp3");
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
         }
@@ -152,7 +152,7 @@ namespace SmartAC
             IWavePlayer waveOutDevice;
             AudioFileReader audioFileReader;
             waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader("stop_rec.mp3");
+            audioFileReader = new AudioFileReader(Application.StartupPath + "\\stop_rec.mp3");
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
         }		
@@ -201,7 +201,8 @@ namespace SmartAC
             if (s.Length > 20)
                 s = s.Substring(0, 17) + "...";
 
-            Image newImage = Image.FromFile("tabpng.png");
+            //Image newImage = Image.FromFile("tabpng.png");
+            Image newImage = Image.FromFile(Application.StartupPath + "\\tabpng.png");
             Rectangle destRect = new Rectangle(e.Bounds.Left-10, e.Bounds.Top-5, e.Bounds.Width+15, 40);
             e.Graphics.DrawImage(newImage, destRect);
             e.Graphics.DrawString(s, e.Font, Brushes.Black, new RectangleF(e.Bounds.Left + 35, e.Bounds.Top + 6, e.Bounds.Width, e.Bounds.Height));
@@ -219,7 +220,7 @@ namespace SmartAC
         {
             string keywordValue = textBox3.Text;
             XmlDocument document = new XmlDocument();
-            document.Load("CfgFile.xml");
+            document.Load(Application.StartupPath + "\\CfgFile.xml");
             int oldLoadCount = loadXmlBlockCount();
             int newLoadCount = oldLoadCount+1;
 
@@ -232,7 +233,7 @@ namespace SmartAC
             path_element.InnerText = textBox2.Text;
             block_num.AppendChild(path_element);
 
-            document.Save("CfgFile.xml");
+            document.Save(Application.StartupPath + "\\CfgFile.xml");
             changeBlocksCount(newLoadCount);
         }
 
@@ -297,5 +298,5 @@ namespace SmartAC
             }
         }
         }
-    
+    //
 }

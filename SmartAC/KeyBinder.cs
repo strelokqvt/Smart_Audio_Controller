@@ -73,9 +73,25 @@ namespace SmartAC
             {
                 button1_Click(null, null);
             }
-            if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex == 0)
+            //if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex == 0)
+           // {
+               // button2_Click(null, null);
+            //}
+            if (e.KeyCode == Keys.F1 && this.tabControl1.SelectedIndex != 0)
             {
-                button2_Click(null, null);
+                tabControl1.SelectedIndex = 0;
+            }
+            if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex != 1)
+            {
+                tabControl1.SelectedIndex = 1;
+            }
+            if (e.KeyCode == Keys.F3 && this.tabControl1.SelectedIndex != 2)
+            {
+                tabControl1.SelectedIndex = 2;
+            }
+            if (e.KeyCode == Keys.F4 && this.tabControl1.SelectedIndex != 3)
+            {
+                tabControl1.SelectedIndex = 3;
             }
         }
     }

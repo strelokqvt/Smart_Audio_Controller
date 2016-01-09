@@ -12,15 +12,15 @@ namespace SmartAC
         private void changeBlocksCount(int count)
         {
             XDocument xDocument4 = new XDocument();
-            xDocument4 = XDocument.Load("CfgFile.xml");
+            xDocument4 = XDocument.Load(Application.StartupPath + "\\CfgFile.xml");
             xDocument4.Root.Element("blocks_count").Value = count.ToString();
-            xDocument4.Save("CfgFile.xml");
+            xDocument4.Save(Application.StartupPath + "\\CfgFile.xml");	
         }
 
         private int loadXmlBlockCount()
         {
             XDocument xDocument3 = new XDocument();
-            xDocument3 = XDocument.Load("CfgFile.xml");
+            xDocument3 = XDocument.Load(Application.StartupPath + "\\CfgFile.xml");
             string block_num = xDocument3.Element("paths").Element("blocks_count").Value;
             int block_count = int.Parse(block_num);
             return block_count;
@@ -31,7 +31,7 @@ namespace SmartAC
         {
             // Загружаем файл
             XDocument xDocument1 = new XDocument();
-            xDocument1 = XDocument.Load("CfgFile.xml");
+            xDocument1 = XDocument.Load(Application.StartupPath + "\\CfgFile.xml");	
             string block_count = xDocument1.Element("paths").Element("blocks_count").Value;
             int h = int.Parse(block_count);
             for (int i = 1; i < h + 1; i++)

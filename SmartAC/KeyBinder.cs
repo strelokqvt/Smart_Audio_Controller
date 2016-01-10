@@ -10,40 +10,11 @@ namespace SmartAC
     public partial class Form1 : Form
     {
         Keys use_keycode;
+        Keys play_keycode;
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyData)
             {
-                case Keys.F1:
-                    textBox1.Text = "F1";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
-                case Keys.F2:
-                    textBox1.Text = "F2";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
-                case Keys.F3:
-                    textBox1.Text = "F3";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
-                case Keys.F4:
-                    textBox1.Text = "F4";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
-                case Keys.F5:
-                    textBox1.Text = "F5";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
-                case Keys.F6:
-                    textBox1.Text = "F6";
-                    use_keycode = Keys.F6;
-                    e.Handled = true;
-                    break;
                 case Keys.Q:
                     textBox1.Text = "Q";
                     use_keycode = Keys.Q;
@@ -67,16 +38,34 @@ namespace SmartAC
             }
         }
 
+        private void textBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.N:
+                    textBox4.Text = "N";
+                    play_keycode = Keys.N;
+                    e.Handled = true;
+                    break;
+                case Keys.M:
+                    textBox4.Text = "M";
+                    play_keycode = Keys.M;
+                    e.Handled = true;
+                    break;
+            }
+
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == use_keycode && this.tabControl1.SelectedIndex == 0)
+            if ((e.KeyCode == Keys.Enter || e.KeyCode == use_keycode)  && this.tabControl1.SelectedIndex == 0)
             {
-                button1_Click(null, null);
+             button1_Click(null, null);
             }
-            //if (e.KeyCode == Keys.F2 && this.tabControl1.SelectedIndex == 0)
-           // {
-               // button2_Click(null, null);
-            //}
+            if ((e.KeyCode == Keys.Space || e.KeyCode == play_keycode) && this.tabControl1.SelectedIndex == 0)
+            {
+                button2_Click(null, null);
+            }
             if (e.KeyCode == Keys.F1 && this.tabControl1.SelectedIndex != 0)
             {
                 tabControl1.SelectedIndex = 0;

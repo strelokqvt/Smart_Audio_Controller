@@ -43,6 +43,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -61,6 +63,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.buttonRunCommand = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -71,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -206,6 +214,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -217,9 +227,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Горячие клавиши";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(180, 77);
+            this.textBox4.MaxLength = 1;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(33, 27);
+            this.textBox4.TabIndex = 4;
+            this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(17, 80);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(112, 20);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Выполнить";
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 25);
+            this.textBox1.Location = new System.Drawing.Point(180, 28);
             this.textBox1.MaxLength = 1;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -270,11 +299,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(706, 673);
+            this.label8.Location = new System.Drawing.Point(703, 669);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 20);
+            this.label8.Size = new System.Drawing.Size(71, 20);
             this.label8.TabIndex = 8;
-            this.label8.Text = "Ver 0.2";
+            this.label8.Text = "Ver 0.31";
             // 
             // label6
             // 
@@ -346,6 +375,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -427,6 +457,65 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "Запись";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackgroundImage = global::SmartAC.Properties.Resources._66359_1024_768;
+            this.tabPage5.Controls.Add(this.buttonRunCommand);
+            this.tabPage5.Controls.Add(this.button8);
+            this.tabPage5.Controls.Add(this.label14);
+            this.tabPage5.Controls.Add(this.label13);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(774, 694);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Управление";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // buttonRunCommand
+            // 
+            this.buttonRunCommand.Image = ((System.Drawing.Image)(resources.GetObject("buttonRunCommand.Image")));
+            this.buttonRunCommand.Location = new System.Drawing.Point(400, 543);
+            this.buttonRunCommand.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonRunCommand.Name = "buttonRunCommand";
+            this.buttonRunCommand.Size = new System.Drawing.Size(131, 47);
+            this.buttonRunCommand.TabIndex = 9;
+            this.buttonRunCommand.UseVisualStyleBackColor = true;
+            this.buttonRunCommand.Click += new System.EventHandler(this.buttonRunCommand_Click);
+            // 
+            // button8
+            // 
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.Location = new System.Drawing.Point(400, 467);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(131, 47);
+            this.button8.TabIndex = 8;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label14.Location = new System.Drawing.Point(32, 545);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(281, 32);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Выполнить команду";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label13.Location = new System.Drawing.Point(32, 469);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(110, 32);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Запись";
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -467,6 +556,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -507,6 +598,13 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button buttonRunCommand;
     }
 }
 

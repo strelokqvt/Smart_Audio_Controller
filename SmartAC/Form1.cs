@@ -297,6 +297,34 @@ namespace SmartAC
                 MessageBoxIcon.Information);
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //Image StopIcon = Image.FromFile("stop.png");
+            //Image StartIcon = Image.FromFile("start.png");
+            playStartRecord();
+            if (ON == false)
+            {
+                waveIn = new WaveIn();
+                waveIn.DeviceNumber = 0;
+                waveIn.DataAvailable += waveIn_DataAvailable;
+                waveIn.RecordingStopped += new EventHandler<NAudio.Wave.StoppedEventArgs>(waveIn_RecordingStopped);
+                waveIn.WaveFormat = new WaveFormat(16000, 1);
+                writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
+                //pictureBox1.Image = StopIcon;
+                waveIn.StartRecording();
+                ON = true;
+
+            }
+            else
+            {
+                waveIn.StopRecording();
+                playStopRecord();
+                ON = false;
+                //pictureBox1.Image = StartIcon;
+            }
+        }
+
         }
     //
 }

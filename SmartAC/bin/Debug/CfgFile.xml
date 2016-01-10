@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<!--CopyRights by StrelokQvt-->
+<!--XML parsing-->
+<!--Данные берутся из XML-->
+
+<paths>
+
+<blocks_count>10</blocks_count> <!--Кол-во блоков. Указывать обязательно.-->
+
+<block_1_st>
+  <keyword>открыть торрент</keyword> <!--Команда, при озвучке которой будет выполнено действие-->
+  <Path>C:\Users\Эдуард\AppData\Roaming\uTorrent\uTorrent.exe</Path> <!--Путь к файлу программы-->
+</block_1_st>
+<block_2_st>
+  <keyword>открыть Firefox</keyword>
+  <Path>C:\Program Files (x86)\Mozilla Firefox\firefox.exe</Path>
+</block_2_st>
+<block_3_st>
+  <keyword>открыть Stalker</keyword>
+  <Path>D:\strelok200\Stalker-COP.exe</Path>
+</block_3_st>
+<block_4_st>
+  <keyword>открыть Skype</keyword>
+  <Path>Skype.exe</Path>
+</block_4_st>
+<block_5_st>
+  <keyword>открыть Visual Studio</keyword>
+  <Path>D:\vs13\Common7\IDE\devenv.exe</Path>
+</block_5_st>
+<block_6_st>
+  <keyword>открыть Steam</keyword>
+  <Path>C:\Program Files (x86)\Steam\Steam.exe</Path>
+</block_6_st>
+<block_7_st>
+  <keyword>открыть notepad</keyword>
+  <Path>C:\Program Files (x86)\Notepad++\notepad++.exe</Path>
+</block_7_st>
+<block_8_st>
+  <keyword>открыть Касперский</keyword>
+  <Path>C:\Program Files (x86)\Kaspersky Lab\Kaspersky Anti-Virus 15.0.2\avpui.exe</Path>
+</block_8_st>
+<block_9_st>
+  <keyword>открыть Sony Vegas</keyword>
+  <Path>C:\Program Files (x86)\Sony\Vegas Pro 11.0\vegas110.exe</Path>
+</block_9_st>
+<block_10_st>
+  <keyword>открыть Photoshop</keyword>
+  <Path>C:\Program Files (x86)\Photoshop CS6\Photoshop.exe</Path>
+</block_10_st>
+
+</paths>

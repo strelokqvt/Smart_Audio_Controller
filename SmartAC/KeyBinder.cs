@@ -82,6 +82,24 @@ namespace SmartAC
             {
                 tabControl1.SelectedIndex = 3;
             }
+
+            if ((e.KeyCode == Keys.Enter) && this.tabControl1.SelectedIndex == 2)
+            {
+                button6_Click(null, null);
+            }
+            if ((e.KeyCode == Keys.Space) && this.tabControl1.SelectedIndex == 2)
+            {
+                button7_Click(null, null);
+            }
+
+            if ((e.KeyCode == Keys.Enter) && this.tabControl1.SelectedIndex == 3)
+            {
+                button8_Click(null, null);
+            }
+            if ((e.KeyCode == Keys.Space) && this.tabControl1.SelectedIndex == 3)
+            {
+                buttonRunCommand_Click(null, null);
+            }
         }
     }
 }

@@ -239,8 +239,8 @@ namespace SmartAC
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //Image StopIcon = Image.FromFile("stop.png");
-            //Image StartIcon = Image.FromFile("start.png");
+            Image StopIcon = Image.FromFile("stop.png");
+            Image StartIcon = Image.FromFile("start.png");
             playStartRecord();
             if (ON == false)
             {
@@ -250,7 +250,7 @@ namespace SmartAC
                 waveIn.RecordingStopped += new EventHandler<NAudio.Wave.StoppedEventArgs>(waveIn_RecordingStopped);
                 waveIn.WaveFormat = new WaveFormat(16000, 1);
                 writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
-                //pictureBox1.Image = StopIcon;
+                pictureBox3.Image = StopIcon;
                 waveIn.StartRecording();
                 ON = true;
 
@@ -260,7 +260,7 @@ namespace SmartAC
                 waveIn.StopRecording();
                 playStopRecord();
                 ON = false;
-                //pictureBox1.Image = StartIcon;
+                pictureBox3.Image = StartIcon;
             }
         }
 
@@ -300,8 +300,8 @@ namespace SmartAC
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //Image StopIcon = Image.FromFile("stop.png");
-            //Image StartIcon = Image.FromFile("start.png");
+            Image StopIcon = Image.FromFile("stop.png");
+            Image StartIcon = Image.FromFile("start.png");
             playStartRecord();
             if (ON == false)
             {
@@ -311,7 +311,7 @@ namespace SmartAC
                 waveIn.RecordingStopped += new EventHandler<NAudio.Wave.StoppedEventArgs>(waveIn_RecordingStopped);
                 waveIn.WaveFormat = new WaveFormat(16000, 1);
                 writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
-                //pictureBox1.Image = StopIcon;
+                pictureBox2.Image = StopIcon;
                 waveIn.StartRecording();
                 ON = true;
 
@@ -321,8 +321,14 @@ namespace SmartAC
                 waveIn.StopRecording();
                 playStopRecord();
                 ON = false;
-                //pictureBox1.Image = StartIcon;
+                pictureBox2.Image = StartIcon;
             }
+        }
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (ON == true)
+                e.Cancel = true;
         }
 
         }

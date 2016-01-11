@@ -82,6 +82,10 @@ namespace SmartAC
             {
                 tabControl1.SelectedIndex = 3;
             }
+            if (e.KeyCode == Keys.F5 && this.tabControl1.SelectedIndex != 4)
+            {
+                tabControl1.SelectedIndex = 4;
+            }
 
             if ((e.KeyCode == Keys.Enter) && this.tabControl1.SelectedIndex == 2)
             {

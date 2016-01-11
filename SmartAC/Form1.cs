@@ -202,9 +202,9 @@ namespace SmartAC
                 s = s.Substring(0, 17) + "...";
 
             //Image newImage = Image.FromFile("tabpng.png");
-            Image newImage = Image.FromFile(Application.StartupPath + "\\tabpng.png");
-            Rectangle destRect = new Rectangle(e.Bounds.Left-10, e.Bounds.Top-5, e.Bounds.Width+15, 40);
-            e.Graphics.DrawImage(newImage, destRect);
+            //Image newImage = Image.FromFile(Application.StartupPath + "\\tabpage.png");
+            //Rectangle destRect = new Rectangle(e.Bounds.Left-12, e.Bounds.Top-5, e.Bounds.Width+15, 40);
+           // e.Graphics.DrawImage(newImage, destRect);
             e.Graphics.DrawString(s, e.Font, Brushes.Black, new RectangleF(e.Bounds.Left + 35, e.Bounds.Top + 6, e.Bounds.Width, e.Bounds.Height));
         }
 
@@ -239,8 +239,8 @@ namespace SmartAC
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Image StopIcon = Image.FromFile("stop.png");
-            Image StartIcon = Image.FromFile("start.png");
+            Image StopIcon = Image.FromFile(Application.StartupPath + "\\stop.png");
+            Image StartIcon = Image.FromFile(Application.StartupPath + "\\start.png");	
             playStartRecord();
             if (ON == false)
             {
@@ -300,8 +300,8 @@ namespace SmartAC
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Image StopIcon = Image.FromFile("stop.png");
-            Image StartIcon = Image.FromFile("start.png");
+            Image StopIcon = Image.FromFile(Application.StartupPath + "\\stop.png");
+            Image StartIcon = Image.FromFile(Application.StartupPath + "\\start.png");	
             playStartRecord();
             if (ON == false)
             {

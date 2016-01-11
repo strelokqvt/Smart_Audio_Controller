@@ -59,6 +59,38 @@ namespace SmartAC
                 {
                     Process.Start("taskmgr.exe");
                 }
+                else if (textOperation.Contains("командная строка"))
+                {
+                    Process.Start("cmd.exe");
+                }
+                else if (textOperation.Contains("свойства папки"))
+                {
+                    Process.Start("control.exe", "folders");
+                }
+                else if (textOperation.Contains("принтеры"))
+                {
+                    Process.Start("control.exe", "printers");
+                }
+                else if (textOperation.Contains("система"))
+                {
+                    Process.Start("control.exe", "system");
+                }
+                else if (textOperation.Contains("доступные обновления"))
+                {
+                    Process.Start("control.exe", "/Name Microsoft.WindowsUpdate /page pageCustomInstall");
+                }
+                else if (textOperation.Contains("журнал обновлений"))
+                {
+                    Process.Start("control.exe", "/Name Microsoft.WindowsUpdate /page pageUpdateHistory");
+                }
+                else if (textOperation.Contains("залипание клавиш"))
+                {
+                    Process.Start("control.exe", "/Name Microsoft.EaseOfAccessCenter /page pageStickyKeysSettings");
+                }
+                else if (textOperation.Contains("удаление программ"))
+                {
+                    Process.Start("control.exe", "/Name Microsoft.ProgramsAndFeatures");
+                }
                 else
                 {
                     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK,

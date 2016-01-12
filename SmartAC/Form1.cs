@@ -283,10 +283,18 @@ namespace SmartAC
                 StreamReader reader = new StreamReader(response.GetResponseStream());
 
                 string text = reader.ReadToEnd();
-                text = text.Substring(text.IndexOf("\"transcript\":\"") + 14); //убираем все, до ключевого слова
-                string second_word = text.Remove(text.IndexOf('"'), text.Length - text.IndexOf('"')); //убираем все, после ключевого слова
-                label11.Text = "Ваш запрос:" + " " + second_word;
-                System.Diagnostics.Process.Start("https://ru.wikipedia.org/wiki/" + second_word);
+                if (text.Contains("transcript"))
+                {
+                    text = text.Substring(text.IndexOf("\"transcript\":\"") + 14); //убираем все, до ключевого слова
+                    string second_word = text.Remove(text.IndexOf('"'), text.Length - text.IndexOf('"')); //убираем все, после ключевого слова
+                    label11.Text = "Ваш запрос:" + " " + second_word;
+                    System.Diagnostics.Process.Start("https://ru.wikipedia.org/wiki/" + second_word);
+                }
+                if (text.Contains("transcript")==false)
+                {
+                    MessageBox.Show("Задан пустой запрос", "Внимание!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);	
+                }
                 reader.Close();
                 response.Close();
 

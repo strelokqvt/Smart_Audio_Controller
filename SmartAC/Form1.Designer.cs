@@ -600,7 +600,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.Control;
             this.label7.Location = new System.Drawing.Point(8, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(721, 102);
+            this.label7.Size = new System.Drawing.Size(812, 170);
             this.label7.TabIndex = 0;
             this.label7.Text = resources.GetString("label7.Text");
             // 
@@ -626,6 +626,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Smart Audio Controler";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);

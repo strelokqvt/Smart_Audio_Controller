@@ -93,6 +93,7 @@ namespace SmartAC
                 }
                 else
                 {
+                    playNoFoundCommand();
                     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -103,6 +104,7 @@ namespace SmartAC
             }
             else
             {
+                recordNoFinish();
                 MessageBox.Show("Запись не завершена", "Внимание!", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             }

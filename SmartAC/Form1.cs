@@ -21,6 +21,7 @@ using System.IO.Compression;
 using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
+using System.Media;
 //qvt git
 
 namespace SmartAC
@@ -36,6 +37,8 @@ namespace SmartAC
             InitializeComponent();
         }
         //
+        SoundPlayer spSound;
+
         private void button1_Click(object sender, EventArgs e)
         {
             Image StopIcon = Image.FromFile(Application.StartupPath + "\\stop.png");
@@ -105,6 +108,7 @@ namespace SmartAC
             }
 			else
 			{
+             recordNoFinish();
 		     MessageBox.Show("Запись не завершена", "Внимание!", MessageBoxButtons.OK, 
 			 MessageBoxIcon.Information);
 			}
@@ -114,7 +118,7 @@ namespace SmartAC
         {	
             Process proc = new Process();
 			string proc_path = ReadXML(text); //передаем записанный текст
-			if (proc_path != null)
+			if (proc_path != "NotFoundPath")
 			{
             proc.StartInfo.FileName = proc_path; 
             proc.StartInfo.Arguments = "";
@@ -122,6 +126,7 @@ namespace SmartAC
 			}
 			else
 			{
+             playNoFoundCommand();
 		     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK, 
 			 MessageBoxIcon.Information);
 			}			 
@@ -139,22 +144,44 @@ namespace SmartAC
 
         private void playStartRecord()
         {
-            IWavePlayer waveOutDevice;
-            AudioFileReader audioFileReader;
-            waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader(Application.StartupPath + "\\start_rec.mp3");
-            waveOutDevice.Init(audioFileReader);
-            waveOutDevice.Play();
+            spSound = new SoundPlayer(Application.StartupPath + "\\start_rec.wav");
+            spSound.Play();
+        }
+
+        private void playEmptyRequest()
+        {
+            spSound = new SoundPlayer(Application.StartupPath + "\\empty_request.wav");
+            spSound.Play();
+        }
+
+        private void playCommandDone()
+        {
+            spSound = new SoundPlayer(Application.StartupPath + "\\command_done.wav");
+            spSound.Play();
+        }
+
+        private void playWarnNoPath()
+        {
+            spSound = new SoundPlayer(Application.StartupPath + "\\warn_no_path.wav");
+            spSound.Play();
+        }
+
+        private void playNoFoundCommand()
+        {
+            spSound = new SoundPlayer(Application.StartupPath + "\\nofound_command.wav");
+            spSound.Play();
+        }
+
+        private void recordNoFinish()
+        {
+            spSound = new SoundPlayer(Application.StartupPath + "\\record_nofinish.wav");
+            spSound.Play();
         }
 
         private void playStopRecord()
         {
-            IWavePlayer waveOutDevice;
-            AudioFileReader audioFileReader;
-            waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader(Application.StartupPath + "\\stop_rec.mp3");
-            waveOutDevice.Init(audioFileReader);
-            waveOutDevice.Play();
+            spSound = new SoundPlayer(Application.StartupPath + "\\stop_rec.wav");
+            spSound.Play();
         }		
 
         private void button3_Click(object sender, EventArgs e)
@@ -177,14 +204,14 @@ namespace SmartAC
 			string web_adress_name = get_site(text);
 			if (web_adress_name != null)
 			{
-            System.Diagnostics.Process.Start(web_adress_name);
+               System.Diagnostics.Process.Start(web_adress_name);
 			}
 			else
 			{
-		     MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK, 
-			 MessageBoxIcon.Information);				
+               playNoFoundCommand();
+		       MessageBox.Show("Команда не распознана либо неверно задана", "Внимание!", MessageBoxButtons.OK, 
+			   MessageBoxIcon.Information);				
 			}	
-            // Clean up the streams.
             reader.Close();
             response.Close();
 		}
@@ -219,22 +246,52 @@ namespace SmartAC
         private void button5_Click(object sender, EventArgs e)
         {
             string keywordValue = textBox3.Text;
-            XmlDocument document = new XmlDocument();
-            document.Load(Application.StartupPath + "\\CfgFile.xml");
-            int oldLoadCount = loadXmlBlockCount();
-            int newLoadCount = oldLoadCount+1;
+            if (textBox2.Text.Length >= 4)
+            {
+                string pathValueCheck = textBox2.Text.Substring(textBox2.Text.Length - 4); // ".exe"  
+                if (pathValueCheck == ".exe")
+                {
+                    if (textBox3.Text != "")
+                    {
+                        XmlDocument document = new XmlDocument();
+                        document.Load(Application.StartupPath + "\\CfgFile.xml");
+                        int oldLoadCount = loadXmlBlockCount();
+                        int newLoadCount = oldLoadCount + 1;
 
-            XmlNode block_num = document.CreateElement("block_" + newLoadCount + "_st");
-            document.DocumentElement.AppendChild(block_num);
-            XmlNode keyword_element = document.CreateElement("keyword");
-            keyword_element.InnerText = keywordValue;
-            block_num.AppendChild(keyword_element);
-            XmlNode path_element = document.CreateElement("Path");
-            path_element.InnerText = textBox2.Text;
-            block_num.AppendChild(path_element);
+                        XmlNode block_num = document.CreateElement("block_" + newLoadCount + "_st");
+                        document.DocumentElement.AppendChild(block_num);
+                        XmlNode keyword_element = document.CreateElement("keyword");
+                        keyword_element.InnerText = keywordValue;
+                        block_num.AppendChild(keyword_element);
+                        XmlNode path_element = document.CreateElement("Path");
+                        path_element.InnerText = textBox2.Text;
+                        block_num.AppendChild(path_element);
 
-            document.Save(Application.StartupPath + "\\CfgFile.xml");
-            changeBlocksCount(newLoadCount);
+                        document.Save(Application.StartupPath + "\\CfgFile.xml");
+                        changeBlocksCount(newLoadCount);
+                        playCommandDone();
+                        MessageBox.Show("Команда успешно добавлена", "Внимание!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ключевое слово отсутствует", "Внимание!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    playWarnNoPath();
+                    MessageBox.Show("Строка не является путем к исполняемому файлу", "Внимание!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                playWarnNoPath();
+                MessageBox.Show("Строка не является путем к исполняемому файлу", "Внимание!", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -290,8 +347,9 @@ namespace SmartAC
                     label11.Text = "Ваш запрос:" + " " + second_word;
                     System.Diagnostics.Process.Start("https://ru.wikipedia.org/wiki/" + second_word);
                 }
-                if (text.Contains("transcript")==false)
+                else //(text.Contains("transcript")==false)
                 {
+                    playEmptyRequest();
                     MessageBox.Show("Задан пустой запрос", "Внимание!", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);	
                 }
@@ -299,8 +357,9 @@ namespace SmartAC
                 response.Close();
 
             }
-            else
+            if (ON == true)
             {
+                recordNoFinish();
                 MessageBox.Show("Запись не завершена", "Внимание!", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             }

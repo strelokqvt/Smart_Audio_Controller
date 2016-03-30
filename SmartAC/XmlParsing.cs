@@ -44,7 +44,7 @@ namespace SmartAC
                     break; //yeah, release it!
                 }
             }
-            return null;
+            return "NotFoundPath";
         }
 
         private string get_site(string text)
